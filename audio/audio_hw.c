@@ -2691,7 +2691,7 @@ static int adev_set_parameters(struct audio_hw_device *dev, const char *kvpairs)
     // FIXME
     ret = str_parms_get_str(parms, "noise_suppression", value, sizeof(value));
     if (ret >= 0) {
-        if (strcmp(value, "true") == 0) {
+        if ((strcmp(value, "true") == 0) || (strcmp(value, "on") == 0)) { // DerTeufel: why did "true" change to "on"? keep both to be save
             ALOGE("%s: enabling two mic control", __func__);
             /* sub mic */
             set_bigroute_by_array(adev->mixer, noise_suppression, 1);
