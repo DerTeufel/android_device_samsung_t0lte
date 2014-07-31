@@ -15,4 +15,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_t0lte.mk
+    $(LOCAL_DIR)/full_t0lte.mk \
+    $(LOCAL_DIR)/nameless_t0lte.mk
