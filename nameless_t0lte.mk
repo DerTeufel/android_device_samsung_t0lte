@@ -40,6 +40,9 @@ $(call inherit-product, vendor/nameless/config/common.mk)
 # This is where we'd set a backup provider if we had one
 $(call inherit-product, device/samsung/t0lte/t0lte.mk)
 
+# Configure dalvik heap
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := nameless_t0lte
 PRODUCT_DEVICE := t0lte
