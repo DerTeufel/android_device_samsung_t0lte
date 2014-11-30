@@ -2,6 +2,7 @@ on early-init
     start ueventd
 
 on init
+
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
     export LD_LIBRARY_PATH /vendor/lib:/system/lib
     export ANDROID_ROOT /system
@@ -9,6 +10,7 @@ on init
     export EXTERNAL_STORAGE /sdcard
 
     symlink /system/etc /etc
+    symlink /system/vendor /vendor
 
     mkdir /sdcard
     mkdir /preload
@@ -22,9 +24,11 @@ on init
     #mount /tmp /tmp tmpfs
 
 on early-fs
-    mount ext4 /dev/block/mmcblk0p13 /system ro wait noatime
 
+    mount ext4 /dev/block/platform/dw_mmc/by-name/SYSTEM /system ro wait noatime
+    mount ext4 /dev/block/platform/dw_mmc/by-name/USERDATA /data rw wait noatime nosuid nodev discard noauto_da_alloc journal_async_commit
     mkdir /data/log 0777
+
     chmod 0666 /dev/log/radio
     chmod 0666 /dev/log/main
     chmod 0666 /dev/log/event
@@ -68,4 +72,3 @@ on property:persist.service.adb.enable=1
 
 on property:persist.service.adb.enable=0
     stop adbd
-
