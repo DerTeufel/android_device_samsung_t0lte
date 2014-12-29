@@ -169,7 +169,7 @@ int AkmSensor::setDelay(int32_t handle, int64_t ns)
     if (sensor_type == 0)
         return -EINVAL;
 
-    fd = open("/sys/class/sensors/ssp_sensor/mag_poll_delay", O_RDWR);
+    fd = open("/sys/class/sensors/ssp_sensor/mag_poll_delay", O_RDWR); // didn't change
     if (fd >= 0) {
         char buf[80];
         sprintf(buf, "%lld", ns);
@@ -177,7 +177,7 @@ int AkmSensor::setDelay(int32_t handle, int64_t ns)
         close(fd);
      }
 
-    fd = open("/sys/class/sensors/ssp_sensor/ori_poll_delay", O_RDWR);
+    fd = open("/sys/class/sensors/ssp_sensor/ori_poll_delay", O_RDWR); // didn't change
     if (fd >= 0) {
         char buf[80];
         sprintf(buf, "%lld", ns);
